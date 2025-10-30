@@ -1,2 +1,3 @@
 # Portfolio
-Mi portfolio personal
+Mi portfolio personal, un proyecto en proceso
+
