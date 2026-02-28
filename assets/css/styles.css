@@ -1,0 +1,520 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0e0a1f; /* mismo color oscuro del contact */
+    color: #8362e6;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+.section {
+    padding: 100px 0;
+    min-height: 100vh;
+}
+
+/* ===== SIDE NAV FIXED CENTERED ===== */
+
+.side-nav {
+    position: fixed;
+    right: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+/* IMPORTANTE: ancho fijo para que no se mueva */
+.side-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 140px; /* espacio máximo del hover */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.side-nav li {
+    margin: 22px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* centra el punto */
+}
+
+/* Punto normal */
+.dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: all 0.35s ease;
+}
+
+.dot:hover {
+    width: 130px;
+    height: 32px;
+    border-radius: 25px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    color: white;
+    justify-content: center; /* CAMBIO CLAVE */
+    padding-left: 0;         /* ELIMINAR padding */
+}
+
+/* Active */
+.dot.active:not(:hover) {
+    background: white;
+    transform: scale(1.2);
+}
+
+/* Hero */
+.hero-section {
+    height: 100vh;
+    background: linear-gradient(270deg, #8362e6, #c984f1, #7e8cfa);
+    background-size: 600% 600%;
+    animation: gradientMove 12s ease infinite;
+    font-family: 'Nova Square', sans-serif;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+/* ===== HERO ANIMATION ===== */
+
+.hero-greeting,
+.hero-name {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease;
+}
+
+.hero-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Sections */
+.section {
+    padding: 100px 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.nav-link {
+    transition: color 0.3s ease;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    color: #6C63FF !important;
+}
+
+/* Scroll reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* SLIDER */
+
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.6s ease;
+}
+
+.project-card {
+    min-width: 100%;
+    height: 450px;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+    background: url("../imgs/eutdm.jpg") center/cover no-repeat;
+}
+
+/* Blur background */
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Content */
+.project-content {
+    position: relative;
+    color: white;
+    padding: 40px;
+    z-index: 2;
+}
+
+/* Arrows */
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #6C63FF;
+    cursor: pointer;
+    z-index: 3;
+    transition: transform 0.2s ease;
+}
+
+.slider-arrow:hover {
+    transform: translateY(-50%) scale(1.2);
+}
+
+.slider-arrow.left {
+    left: -50px;
+}
+
+.slider-arrow.right {
+    right: -50px;
+}
+
+/* Indicators */
+
+.slider-indicators {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.slider-indicators span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background: #C8B6FF;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-indicators span.active {
+    width: 25px;
+    border-radius: 10px;
+    background: #6C63FF;
+}
+
+
+/* ===== HERO TYPOGRAPHY SIZE ===== */
+
+.hero-section .hero-greeting {
+    font-size: 200px;
+    line-height: 0.85;
+    font-weight: 800;
+    margin: 0;
+    color: white;
+}
+
+.hero-section .hero-name {
+    font-size: 30px; /* un poco más grande que antes */
+    font-weight: 400;
+    margin-top: 20px;
+    color: white;
+}
+
+/* ===============================
+   NAV STATE WHEN NOT IN HERO
+================================ */
+
+body.not-hero .dot {
+    border: 2px solid #8362e6;
+}
+
+/* Hover fuera del hero */
+body.not-hero .dot:hover {
+    border: 2px solid #8362e6;
+    color: #8362e6;
+}
+
+/* Activo fuera del hero */
+body.not-hero .dot.active:not(:hover) {
+    border: 2px solid #8362e6;
+    transform: scale(1.2);
+}
+
+/* IMPORTANTE: ocultar texto cuando es punto */
+.dot:not(:hover) {
+    color: transparent;
+}
+
+/* ===============================
+   ABOUT SECTION BAND
+================================ */
+
+.about-section {
+    background: #F8F5FF;
+    display: flex;
+    align-items: center;
+}
+
+
+.about-band {
+    width: 100%;
+    padding: 80px 0;
+    background: linear-gradient(135deg, #8362e6, #c984f1);
+    position: relative;
+}
+
+/* Foto */
+.about-photo {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-photo:hover {
+    transform: scale(1.08);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+}
+/* Título */
+.about-title {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* Texto */
+.about-text {
+    color: white;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* ===============================
+   CONTACT SECTION DARK + MANY 3D SHAPES
+================================ */
+
+#contact {
+    position: relative;
+    background: radial-gradient(circle at top left, #1a1033, #0e0a1f);
+    overflow: hidden;
+    color: white;
+    padding: 120px 0;
+}
+
+/* Container above shapes */
+#contact .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* SHAPES WRAPPER */
+.shapes {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+/* BASE SHAPE STYLE */
+.shape {
+    position: absolute;
+    opacity: 0.25;
+    animation: float 10s ease-in-out infinite alternate;
+}
+
+/* SHAPE 1 - círculo grande */
+.shape1 {
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(145deg, #8362e6, #c984f1);
+    border-radius: 50%;
+    top: -120px;
+    right: -120px;
+    box-shadow: 
+        30px 30px 60px rgba(0,0,0,0.6),
+        inset -15px -15px 30px rgba(255,255,255,0.2);
+}
+
+/* SHAPE 2 - cuadrado rotado */
+.shape2 {
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(145deg, #7e8cfa, #8362e6);
+    bottom: -120px;
+    left: -120px;
+    transform: rotate(45deg);
+    box-shadow: 
+        30px 30px 60px rgba(0,0,0,0.6),
+        inset -10px -10px 20px rgba(255,255,255,0.15);
+}
+
+/* SHAPE 3 - círculo mediano */
+.shape3 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(145deg, #c984f1, #7e8cfa);
+    top: 40%;
+    left: -100px;
+    border-radius: 50%;
+    box-shadow: 
+        20px 20px 40px rgba(0,0,0,0.6),
+        inset -10px -10px 20px rgba(255,255,255,0.2);
+}
+
+/* SHAPE 4 - rectángulo */
+.shape4 {
+    width: 300px;
+    height: 150px;
+    background: linear-gradient(145deg, #8362e6, #7e8cfa);
+    top: 20%;
+    right: -150px;
+    transform: rotate(-30deg);
+    box-shadow: 
+        20px 20px 40px rgba(0,0,0,0.6),
+        inset -8px -8px 16px rgba(255,255,255,0.15);
+}
+
+/* SHAPE 5 - pequeño decorativo */
+.shape5 {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(145deg, #c984f1, #8362e6);
+    bottom: 20%;
+    right: 10%;
+    border-radius: 50%;
+    box-shadow: 
+        15px 15px 30px rgba(0,0,0,0.6),
+        inset -5px -5px 10px rgba(255,255,255,0.2);
+}
+
+/* Floating animation */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-40px);
+    }
+}
+
+/* ===============================
+   CONTACT FORM
+================================ */
+
+.contact-content {
+    position: relative;
+    z-index: 2;
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+/* FORM */
+
+.contact-form {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 14px 18px;
+    border-radius: 12px;
+    color: white;
+    outline: none;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border: 1px solid #8362e6;
+    box-shadow: 0 0 15px rgba(131,98,230,0.6);
+}
+
+/* BUTTON */
+
+.contact-form button {
+    padding: 14px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(135deg, #8362e6, #c984f1);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(131,98,230,0.6);
+}
+
+/* SOCIAL ICONS */
+
+.contact-social {
+    display: flex;
+    gap: 35px;
+}
+
+.contact-social a {
+    font-size: 32px;
+    color: rgba(255,255,255,0.5);
+    transition: all 0.3s ease;
+}
+
+.contact-social a:hover {
+    color: white;
+    transform: scale(1.2);
+}
